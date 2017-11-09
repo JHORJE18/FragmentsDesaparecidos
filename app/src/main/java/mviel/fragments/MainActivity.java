@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class MainActivity extends Activity implements Fragment2.OnFragmentInteractionListener2,Fragment3.OnFragmentInteractionListener3 {
+public class MainActivity extends Activity implements Fragment2.OnFragmentInteractionListener2,Fragment3.OnFragmentInteractionListener3,EnviarClics {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,5 +94,11 @@ public class MainActivity extends Activity implements Fragment2.OnFragmentIntera
 
     public void mostrarToast(String mensaje){
         Toast.makeText(getApplicationContext(),mensaje,Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void EnviarClics(int clics) {
+        Fragment3 fm3 = (Fragment3) getFragmentManager().findFragmentById(R.id.canto_inferior_dret);
+        fm3.recibir(clics);
     }
 }

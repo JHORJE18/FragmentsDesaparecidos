@@ -29,6 +29,8 @@ public class Fragment2 extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private FragmentManager fm;
     private FragmentTransaction ft;
+    private EnviarClics EC;
+    private int clicls = 0;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -101,6 +103,8 @@ public class Fragment2 extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction2(uri);
         }
+        clicls++;
+        EC.EnviarClics(clicls);
     }
 
     @Override
@@ -112,6 +116,7 @@ public class Fragment2 extends Fragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+        EC = (EnviarClics) activity;
     }
 
     @Override
