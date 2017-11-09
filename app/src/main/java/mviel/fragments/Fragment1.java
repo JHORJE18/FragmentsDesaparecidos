@@ -49,12 +49,14 @@ public class Fragment1 extends Fragment {
 
                 Fragment3 f3;
                 Fragment2 f2;
+                String mensaje = "Se ha eliminado";
 
                 if ((f3 = (Fragment3)getFragmentManager().findFragmentById(R.id.canto_inferior_dret)) != null){
                     fm = getFragmentManager();
                     ft = fm.beginTransaction();
 
                     ft.remove(getFragmentManager().findFragmentById(R.id.canto_inferior_dret));
+                    mensaje += " el Fragment 3 y";
                     ft.commit();
                 }
                 if ((f2 = (Fragment2)getFragmentManager().findFragmentById(R.id.canto_superior_dret)) != null){
@@ -62,10 +64,12 @@ public class Fragment1 extends Fragment {
                     ft = fm.beginTransaction();
 
                     ft.remove(getFragmentManager().findFragmentById(R.id.canto_superior_dret));
+                    mensaje += " el Fragment 2";
                     ft.commit();
                 } else {
-                    Toast.makeText(getActivity().getBaseContext(),"Ya no hay Fragments",Toast.LENGTH_LONG).show();
+                    mensaje = "Ya no hay Fragments";
                 }
+                Toast.makeText(getActivity().getBaseContext(),mensaje,Toast.LENGTH_LONG).show();
 
                 return false;
             }
