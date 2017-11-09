@@ -32,11 +32,42 @@ public class Fragment1 extends Fragment {
         layoutF1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"Has fet click en Fragment1",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getBaseContext(),"Has fet click en Fragment1",Toast.LENGTH_SHORT).show();
                 fm = getFragmentManager();
                 ft = fm.beginTransaction();
                 ft.add(R.id.canto_superior_dret,Fragment2.newInstance("",""));
                 ft.commit();
+            }
+        });
+
+        //Eventos clic largo
+        layoutF1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                FragmentTransaction ft;
+                FragmentManager fm;
+
+                Fragment3 f3;
+                Fragment2 f2;
+
+                if ((f3 = (Fragment3)getFragmentManager().findFragmentById(R.id.canto_inferior_dret)) != null){
+                    fm = getFragmentManager();
+                    ft = fm.beginTransaction();
+
+                    ft.remove(getFragmentManager().findFragmentById(R.id.canto_inferior_dret));
+                    ft.commit();
+                }
+                if ((f2 = (Fragment2)getFragmentManager().findFragmentById(R.id.canto_superior_dret)) != null){
+                    fm = getFragmentManager();
+                    ft = fm.beginTransaction();
+
+                    ft.remove(getFragmentManager().findFragmentById(R.id.canto_superior_dret));
+                    ft.commit();
+                } else {
+                    Toast.makeText(getActivity().getBaseContext(),"Ya no hay Fragments",Toast.LENGTH_LONG).show();
+                }
+
+                return false;
             }
         });
         return v;

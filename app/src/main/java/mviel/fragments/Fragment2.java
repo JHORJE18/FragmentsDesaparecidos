@@ -82,12 +82,12 @@ public class Fragment2 extends Fragment {
                 ft = fm.beginTransaction();
                 //si
                 if (!mListener.estaFragment3EnActivity()) {
-                    Toast.makeText(getContext(), "Mostrant Fragment3", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getBaseContext(), "Mostrant Fragment3", Toast.LENGTH_SHORT).show();
                     ft.add(R.id.canto_inferior_dret, Fragment3.newInstance("", ""));
 
 
                 }else{
-                    Toast.makeText(getContext(), "Amagant Fragment3", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getBaseContext(), "Amagant Fragment3", Toast.LENGTH_SHORT).show();
                     ft.remove(getActivity().getFragmentManager().findFragmentById(R.id.canto_inferior_dret));
                 }
                 ft.commit();
