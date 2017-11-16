@@ -34,17 +34,13 @@ public class Fragment2 extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    //Variables del contador para tamaño texto
+    private int contador;
     private OnFragmentInteractionListener2 mListener;
+    private Comunicador c;
+    FrameLayout fl;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Fragment2.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static Fragment2 newInstance(String param1, String param2) {
         Fragment2 fragment = new Fragment2();
         Bundle args = new Bundle();
@@ -75,17 +71,22 @@ public class Fragment2 extends Fragment {
 
         FrameLayout fl = (FrameLayout) v.findViewById(R.id.FrameLayout1);
 
+        contador=MainActivity.contador;     //Indicamos que tenga el valor del contador del MainActivity
         fl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                contador++;     //Suma valor del contador
                 fm = getFragmentManager();
                 ft = fm.beginTransaction();
                 //si
                 if (!mListener.estaFragment3EnActivity()) {
+                    //Establece el lugar de la interfaz
+                    c = (Comunicador) getActivity();        //Establecemos la actividad de la interfaz
                     Toast.makeText(getActivity().getBaseContext(), "Mostrant Fragment3", Toast.LENGTH_SHORT).show();
                     ft.add(R.id.canto_inferior_dret, Fragment3.newInstance("", ""));
 
-
+                    //Envia variable a la base de la interfaz
+                    c.comunicat(contador);
                 }else{
                     Toast.makeText(getActivity().getBaseContext(), "Amagant Fragment3", Toast.LENGTH_SHORT).show();
                     ft.remove(getActivity().getFragmentManager().findFragmentById(R.id.canto_inferior_dret));
@@ -137,5 +138,9 @@ public class Fragment2 extends Fragment {
     }
 
 
+    //Interfaz contador
+    public interface Comunicador{
+        void comunicat(int cont);
+    }
 
 }

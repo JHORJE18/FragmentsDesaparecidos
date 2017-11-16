@@ -11,7 +11,10 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class MainActivity extends Activity implements Fragment2.OnFragmentInteractionListener2,Fragment3.OnFragmentInteractionListener3 {
+public class MainActivity extends Activity implements Fragment2.Comunicador, Fragment2.OnFragmentInteractionListener2,Fragment3.OnFragmentInteractionListener3 {
+
+    //Variable Global del contador
+    public static int contador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +72,9 @@ public class MainActivity extends Activity implements Fragment2.OnFragmentIntera
 
     }
 
+    //Interfaz comunicadora
+
+
     @Override
     public void onBackPressed() {
         FragmentTransaction ft;
@@ -94,5 +100,11 @@ public class MainActivity extends Activity implements Fragment2.OnFragmentIntera
 
     public void mostrarToast(String mensaje){
         Toast.makeText(getApplicationContext(),mensaje,Toast.LENGTH_LONG).show();
+    }
+
+    //Metodo importado del comunicador (Implementar en implements "Fragment2.Comunicador")
+    @Override
+    public void comunicat(int cont) {
+        contador = cont;
     }
 }
