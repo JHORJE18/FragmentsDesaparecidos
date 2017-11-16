@@ -33,8 +33,6 @@ public class Fragment2 extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private int clics =0;
-    EnivarClics EC;
 
     private OnFragmentInteractionListener2 mListener;
 
@@ -82,10 +80,6 @@ public class Fragment2 extends Fragment {
             public void onClick(View v) {
                 fm = getFragmentManager();
                 ft = fm.beginTransaction();
-
-                clics++;
-                EC.enviarDatos(clics);
-
                 //si
                 if (!mListener.estaFragment3EnActivity()) {
                     Toast.makeText(getActivity().getBaseContext(), "Mostrant Fragment3", Toast.LENGTH_SHORT).show();
@@ -118,8 +112,6 @@ public class Fragment2 extends Fragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-
-        EC = (EnivarClics) activity;
     }
 
     @Override
